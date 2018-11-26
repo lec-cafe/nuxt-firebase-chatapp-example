@@ -40,8 +40,8 @@
   }
   .post-btn{
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 10px;
+    right: 10px;
   }
   .form-control:focus{
     border-color: #cccccc;
