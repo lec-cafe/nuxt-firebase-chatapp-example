@@ -19,7 +19,7 @@
         return this.$store && this.chatContents && this.chatContents.length
       },
       chatContents(){
-        return this.$store.state.chatContents
+        return this.$store.getters.chatContents
       }
     }
   }

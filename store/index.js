@@ -1,6 +1,7 @@
 import Vuex from 'vuex'
 import { firebaseMutations, firebaseAction } from 'vuexfire'
 import firebase from '~/service/firebase'
+import moment from 'moment'
 const db = firebase.database()
 const chatRef = db.ref("/chat")
 
@@ -10,6 +11,14 @@ const createStore = () => {
       me: '',
       chatContents: []
     }),
+    getters:{
+      chatContents(state){
+        state.chatContents.sort((left, right)=>{
+          return moment(right.createdAt).diff(left.createdAt)
+        })
+        return state.chatContents
+      }
+    },
     mutations: {
       ...firebaseMutations,
       SET_ME(state, name){
@@ -24,7 +33,7 @@ const createStore = () => {
         chatRef.push({
           name: state.me,
           text,
-          createdAt: '11月 24日 19:00:00'
+          createdAt: moment().format("YYYY-MM-DD h:mm:ss")
         });
       }),
     }
