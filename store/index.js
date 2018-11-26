@@ -17,8 +17,8 @@ const createStore = () => {
       }
     },
     actions:{
-      INIT_CHAT: firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }) => {
-        bindFirebaseRef('chatContents', chatRef, { wait: true })
+      INIT_CHAT: firebaseAction(({ bindFirebaseRef }) => {
+        bindFirebaseRef('chatContents', chatRef)
       }),
       UPDATE_CHAT_CONTENTS: firebaseAction(({state}, {text}) => {
         chatRef.push({
