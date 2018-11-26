@@ -1,5 +1,5 @@
 <template>
-  <section v-if="hasChatContents">
+  <section v-if="hasChatContents" class="chat-section">
     <div v-for="chatContent in chatContents" class="chat-content bg-light">
       <div class="chat-header">
         <span class="name">{{chatContent.name}}</span>
@@ -29,9 +29,14 @@
 </script>
 
 <style scoped>
+  .chat-section{
+    height: 75vh;
+    overflow: scroll;
+  }
   .chat-content{
     border-bottom:solid 1px #dedede;
     padding:20px;
+    overflow: scroll;
   }
   .name{
     font-size:24px;

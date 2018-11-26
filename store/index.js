@@ -19,6 +19,13 @@ const createStore = () => {
 
         state.chatContents = chatContents
       },
+      UPDATE_CHAT_CONTENTS(state, {text}){
+        state.chatContents.unshift({
+          name: state.me,
+          text,
+          createdAt: '11月 24日 19:00:00'
+        })
+      },
       SET_ME(state, name){
         state.me = name
       }
