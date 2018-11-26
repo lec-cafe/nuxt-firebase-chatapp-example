@@ -19,7 +19,7 @@
     methods:{
       async post(){
         await this.$store.dispatch('UPDATE_CHAT_CONTENTS', {text: this.value})
-        this.value = ""
+        // this.value = ""
       }
     }
   }
