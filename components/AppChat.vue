@@ -14,9 +14,6 @@
 
 <script>
   export default {
-    mounted(){
-      this.$store.commit('SET_CHAT_CONTENTS')
-    },
     computed:{
       hasChatContents(){
         return this.$store && this.chatContents && this.chatContents.length

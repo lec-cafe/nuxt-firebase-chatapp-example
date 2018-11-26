@@ -21,7 +21,10 @@ export default {
     return {
       text: ""
     }
-  }
+  },
+  async mounted(){
+    await this.$store.dispatch("INIT_CHAT")
+  },
 }
 </script>
 

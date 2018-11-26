@@ -17,8 +17,8 @@
   export default{
     props: ['value'],
     methods:{
-      post(){
-        this.$store.commit('UPDATE_CHAT_CONTENTS', {text: this.value})
+      async post(){
+        await this.$store.dispatch('UPDATE_CHAT_CONTENTS', {text: this.value})
         this.value = ""
       }
     }

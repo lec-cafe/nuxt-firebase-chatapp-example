@@ -1,4 +1,8 @@
 import Vuex from 'vuex'
+import { firebaseMutations, firebaseAction } from 'vuexfire'
+import firebase from '~/service/firebase'
+const db = firebase.database()
+const chatRef = db.ref("chat")
 
 const createStore = () => {
   return new Vuex.Store({
@@ -7,28 +11,23 @@ const createStore = () => {
       chatContents: []
     }),
     mutations: {
-      SET_CHAT_CONTENTS (state) {
-        let chatContents = []
-        for (let i = 0; i < 10; i++) {
-          chatContents.push({
-            name: 'name',
-            text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-            createdAt: '11月 24日 19:00:00'
-          })
-        }
-
-        state.chatContents = chatContents
-      },
-      UPDATE_CHAT_CONTENTS(state, {text}){
-        state.chatContents.unshift({
-          name: state.me,
-          text,
-          createdAt: '11月 24日 19:00:00'
-        })
-      },
+      ...firebaseMutations,
       SET_ME(state, name){
         state.me = name
       }
+    },
+    actions:{
+      INIT_CHAT: firebaseAction(({ bindFirebaseRef,unbindFirebaseRef }) => {
+        console.log(chatRef)
+        // bindFirebaseRef('chatContents', chatRef).then(data => console.log(data))
+      }),
+      UPDATE_CHAT_CONTENTS: firebaseAction(({state}, text) => {
+        chatRef.set({
+          name: state.me,
+          text,
+          createdAt: '11月 24日 19:00:00'
+        });
+      }),
     }
   })
 }
