@@ -15,6 +15,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  line-height:1.5;
 }
 
 *,
@@ -51,5 +52,9 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.container {
+  max-width:600px;
 }
 </style>
