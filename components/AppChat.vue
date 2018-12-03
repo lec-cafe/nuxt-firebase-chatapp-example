@@ -1,5 +1,5 @@
 <template>
-  <section v-if="hasChatContents">
+  <section v-if="hasChatContents" class="chat-section">
     <div v-for="chatContent in chatContents" class="chat-content bg-light">
       <div class="chat-header">
         <span class="name">{{chatContent.name}}</span>
@@ -14,24 +14,26 @@
 
 <script>
   export default {
-    mounted(){
-      this.$store.commit('SET_CHAT_CONTENTS')
-    },
     computed:{
       hasChatContents(){
         return this.$store && this.chatContents && this.chatContents.length
       },
       chatContents(){
-        return this.$store.state.chatContents
+        return this.$store.getters.chatContents
       }
     }
   }
 </script>
 
 <style scoped>
+  .chat-section{
+    height: 75vh;
+    overflow: scroll;
+  }
   .chat-content{
     border-bottom:solid 1px #dedede;
     padding:20px;
+    overflow: scroll;
   }
   .name{
     font-size:24px;
